@@ -1,8 +1,8 @@
 
-const Button = ({ clickHandle, children}, props) => {
+const Button = ({ clickHandle, value,style}, props) => {
   return (
-    <button onClick={clickHandle} className='bg-sky-500 text-white'>
-      {children}
+    <button onClick={clickHandle} className={style}>
+      {value}
     </button>
   );
 };
