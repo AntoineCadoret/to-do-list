@@ -1,16 +1,10 @@
-import { Button } from '../../atoms/Button';
-const TableToDo = ({ title, isButton, buttonValue}, props) => {
+import { TableSection } from '../../molecules/TableSection/TableSection';
+const TableToDo = ({sections},props) => {
     return (
         <div className='flex justify-around'>
-            <div className='bg-slate-300'>
-                <p>backlog</p>
-            </div>
-            <div>
-                <p>on going</p>
-            </div>
-            <div>
-                <p>finish</p>
-            </div>
+            {sections.map(sectionName =>(
+                <TableSection sectionTitle={sectionName}/>
+            ))}
         </div>
     );
   };
