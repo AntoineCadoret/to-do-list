@@ -1,7 +1,7 @@
 
-const Button = ({ clickHandle, value,style}, props) => {
+const Button = ({ clickHandle, value, buttonStyle}, props) => {
   return (
-    <button onClick={clickHandle} className={style}>
+    <button onClick={clickHandle} className={buttonStyle}>
       {value}
     </button>
   );

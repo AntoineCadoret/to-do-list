@@ -3,7 +3,7 @@ const Header = ({ title, isButton, buttonValue}, props) => {
     return (
       <header className='page-head'>
         {isButton === 1 &&
-            <Button style='mt-5 ml-5 p-2 rounded bg-sky-500 text-white' value={buttonValue}/>
+            <Button buttonStyle='mt-5 ml-5 p-2 rounded bg-sky-500 text-white' value={buttonValue}/>
         }
         <div className='flex justify-center'>
             <h1 className="text-3xl font-bold">{title}</h1>
