@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import FormTask from './pages/FormTask';
-import NoPage from './pages/NoPage';
+import Error from './pages/Error';
 import Layout from './pages/Layout';
 
 
@@ -14,18 +14,17 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <Error/>,
     children: [
       {
         path: '/',
         element: <Home />,
+        errorElement: <Error/>,
       },
       {
         path: '/FormTask',
         element: <FormTask />,
-      },
-      {
-        path: '*',
-        element: <NoPage/>,
+        errorElement: <Error/>,
       },
     ],
   },
