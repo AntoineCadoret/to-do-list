@@ -1,0 +1,28 @@
+{
+  "window.zoomLevel": 1,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"],
+  "git.enableSmartCommit": true,
+  "eslint.alwaysShowStatus": true,
+  "files.autoSave": "off",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "git.ignoreWindowsGit27Warning": true,
+  "eslint.options": {
+    "eslint brace-style": [
+      "error",
+      "allman",
+      {
+        "allowSingleLine": true
+      }
+    ]
+  },
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.format.enable": true
+}
