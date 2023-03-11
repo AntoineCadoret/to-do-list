@@ -5,23 +5,29 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/Home';
-// import Layout from "./pages/Layout";
 import FormTask from './pages/FormTask';
 import NoPage from './pages/NoPage';
+import Layout from './pages/Layout';
 
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/FormTask',
-    element: <FormTask />,
-  },
-  {
-    path: '*',
-    element: <NoPage/>,
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/FormTask',
+        element: <FormTask />,
+      },
+      {
+        path: '*',
+        element: <NoPage/>,
+      },
+    ],
   },
 ]);
 /**

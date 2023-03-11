@@ -1,23 +1,18 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navigation from "../components/molecules/Navigation/Navigation";
 
-const Layout = (props) => {
+/**
+ *
+ * @return {html} link the navigation to every page
+ */
+function Layout() {
     return (
-        <body>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/FormTask"> Add Task</Link>
-                    </li>
-                </ul>
-            </nav>
-
+        <>
+            <Navigation/>
             <Outlet />
-        </body>
+        </>
     );
-};
+}
 
-export default { Layout };
+export default Layout;
