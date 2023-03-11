@@ -3,7 +3,11 @@ import { Header } from "../components/organisms/Header/Header";
 import { TableToDo } from "../components/organisms/TableToDo/TableToDo";
 import { AddSection } from "../components/molecules/AddSection/AddSection";
 
-const Home = ( props) => {
+/**
+ *
+ * @return {html} home page
+ */
+function Home() {
   const [sections, setSections] = useState(['Backlog', 'On Going', 'Finish']);
   const tableSection = [...sections];
 
@@ -22,7 +26,12 @@ const Home = ( props) => {
   }, [tableSection, sections]);
   return (
     <div className="App">
-      <Header title="My To-Do List" isButton buttonValue="Add a task" />
+      <Header
+        title="My To-Do List"
+        isLink
+        linkDestination="/FormTask"
+        linkName="Add Task"
+      />
       {sections && <TableToDo
         key={sections}
         sections={sections}
@@ -32,6 +41,6 @@ const Home = ( props) => {
       <AddSection addNewSection={() => addSectionTable()} />
     </div>
   );
-};
+}
 
-export { Home };
+export default Home;
