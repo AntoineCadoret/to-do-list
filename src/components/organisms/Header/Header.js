@@ -2,7 +2,8 @@ import React from "react";
 // import { Button } from '../../atoms/Button';
 // import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-const Header = ({ title, isLink, linkDestination, linkName}, props) => {
+
+const Header = ({ title}, props) => {
     return (
       <header className='page-head'>
         {/* {isLink &&
@@ -20,8 +21,5 @@ const Header = ({ title, isLink, linkDestination, linkName}, props) => {
   };
   Header.propTypes = {
     title: PropTypes.string,
-    isLink: PropTypes.bool,
-    linkDestination: PropTypes.string,
-    linkName: PropTypes.string,
-};
+  };
 export { Header };

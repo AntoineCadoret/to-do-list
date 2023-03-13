@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Navigation from "../components/molecules/Navigation/Navigation";
 
 /**
@@ -23,11 +23,18 @@ function Error() {
                     text-3xl">
                     404 Not found
                 </h1>
-                <Link
-                    className="mt-5 ml-5 p-2 rounded bg-sky-500 text-white"
+                <NavLink
+                    className="mt-5
+                    ml-5
+                    p-2
+                    rounded
+                    bg-sky-500
+                    text-white
+                    hover:bg-sky-700
+                    active:bg-sky-200"
                     to="/">
                     Return Home
-                </Link>
+                </NavLink>
             </div>
         </div>
     );
