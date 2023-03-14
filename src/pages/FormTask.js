@@ -1,17 +1,31 @@
 import React from "react";
 import { Header } from "../components/organisms/Header/Header";
 import { Button } from "../components/atoms/Button";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { taskAction } from "../store/storage";
 /**
  *
  * @return {html} task creation and update page
  */
 function FormTask() {
     const sections = useSelector((state) => state.sections.sections);
+    const tasks = useSelector((state) => state.task.task);
+
+    const dispatch = useDispatch();
     const saveHandler = () => {
-        // const taskName = document.querySelector(".taskName").value;
-        const arrTask = [];
-        return arrTask;
+        const taskName = document.querySelector(".taskName").value;
+        const taskType = document.querySelector(".taskType").value;
+        const taskDate = document.querySelector(".date-du").value;
+        const taskCompletion = document.querySelector(".completion").value;
+        const taskId = tasks.length;
+        const arrTask = {
+            id: taskId,
+            name: taskName,
+            type: taskType,
+            dueDate: taskDate,
+            completionLevel: taskCompletion,
+        };
+        dispatch(taskAction.addTask(arrTask));
     };
     return (
         <div className="App">
@@ -29,10 +43,10 @@ function FormTask() {
                     Type :
                     <select
                         name="taskType"
-                        className="m-1 rounded border"
+                        className="taskType m-1 rounded border"
+                        defaultValue='default'
                     >
-                        <option selected
-                            value="default">
+                        <option value="default">
                             Choose a type of task
                         </option>
                         <option value="Chores">Chores</option>
@@ -46,19 +60,17 @@ function FormTask() {
                     <input
                         type="date"
                         name="date-du"
-                        className="m-1 border rounded"
+                        className="date-du m-1 border rounded"
                     />
                 </label>
                 <label className="m-4">
                     Completion Level :
                     <select
                         name="completion"
-                        className="m-1 rounded border"
+                        className="completion m-1 rounded border"
+                        defaultValue='default'
                     >
-                        <option
-                            selected
-                            value="default"
-                        >
+                        <option value="default">
                             Choose a completion level
                         </option>
                         {sections.map((sectionName, index) => (

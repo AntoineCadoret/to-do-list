@@ -1,8 +1,8 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const initialSectionState = { sections: ['Backlog', 'On going', 'Finish'] };
-// const initialTaskState =
-// [{ name: '', type: '', dueDate: '', completionLevel: '' }]
+const initialTaskState = {
+    task: []};
 
 const sectionSlice = createSlice({
     name: 'section',
@@ -22,14 +22,28 @@ const sectionSlice = createSlice({
     },
 });
 
-// const taskSlice = createSlice({
-//     name: 'task',
-//     initialTaskState:
-// });
+const taskSlice = createSlice({
+    name: 'task',
+    initialState: initialTaskState,
+    reducers: {
+        addTask: (state, action) => {
+            console.log(action.payload);
+            state.task.push(action.payload);
+            console.log(state.task[1]);
+        },
+        removeTask: (state, action) => {
+            console.log("remove");
+        },
+        updateTask: (state, action) => {
+            console.log("update");
+        },
+    },
+});
 const store = configureStore({
-    reducer: { sections: sectionSlice.reducer },
+    reducer: { sections: sectionSlice.reducer, task: taskSlice.reducer },
 });
 
 export const sectionAction = sectionSlice.actions;
+export const taskAction = taskSlice.actions;
 
 export default store;
