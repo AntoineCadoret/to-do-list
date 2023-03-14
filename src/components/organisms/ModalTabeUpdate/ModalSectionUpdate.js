@@ -17,6 +17,12 @@ const ModalSectionUpdate = ({ modifType, title, closeHandler }, props) => {
         }
         closeHandler();
     };
+    const removeHandle = () => {
+        if (confirm("Are you sure to remove the" + title + " section")) {
+          dispatch(sectionAction.removeSection(title));
+          closeHandler();
+        }
+    };
     return (
         <>
             <div className={classes.backdrop} onClick={closeHandler} />
@@ -36,12 +42,33 @@ const ModalSectionUpdate = ({ modifType, title, closeHandler }, props) => {
                             defaultValue={(modifType === "update") ? title : ''}
                         />
                     </label>
-                    <Button
+                </div>
+                <footer className="flex justify-center">
+                   <Button
                         value={(modifType === "update") ? 'Update' : 'Add'}
                         clickHandle={updateHandle}
-                        buttonStyle="bg-sky-500 rounded m-3 p-2 text-white"
+                        buttonStyle="w-2/5
+                        bg-sky-500
+                        rounded
+                        m-3
+                        p-2
+                        text-white
+                        self-right
+                        hover:bg-sky-700"
                     />
-                </div>
+                    {(modifType === "update") ? <Button
+                        value='remove'
+                        clickHandle={removeHandle}
+                        buttonStyle=" w-2/5
+                        bg-red-500
+                        rounded
+                        m-3
+                        p-2
+                        text-white
+                        self-left
+                        hover:bg-red-700"
+                    /> :''}
+                </footer>
             </div>
         </>
     );

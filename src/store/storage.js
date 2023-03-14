@@ -1,7 +1,8 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const initialSectionState = { sections: ['Backlog', 'On going', 'Finish'] };
-const initialTaskState = [{name:'', type:'', dueDate: '', completionLevel: ''}]
+// const initialTaskState =
+// [{ name: '', type: '', dueDate: '', completionLevel: '' }]
 
 const sectionSlice = createSlice({
     name: 'section',
@@ -21,10 +22,10 @@ const sectionSlice = createSlice({
     },
 });
 
-const taskSlice = createSlice({
-    name: 'task',
-    initialTaskState: 
-});
+// const taskSlice = createSlice({
+//     name: 'task',
+//     initialTaskState:
+// });
 const store = configureStore({
     reducer: { sections: sectionSlice.reducer },
 });
