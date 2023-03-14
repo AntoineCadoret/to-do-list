@@ -1,11 +1,13 @@
 import React from "react";
 import { Header } from "../components/organisms/Header/Header";
 import { Button } from "../components/atoms/Button";
+import { useSelector } from 'react-redux';
 /**
  *
  * @return {html} task creation and update page
  */
 function FormTask() {
+    const sections = useSelector((state) => state.sections.sections);
     const saveHandler = () => {
         const arrTask = [];
         return arrTask;
@@ -58,7 +60,14 @@ function FormTask() {
                         >
                             Choose a completion level
                         </option>
-                        <option>value</option>
+                        {sections.map((sectionName, index) => (
+                            <option
+                                key={`${sectionName}_index_${index}`}
+                                value={sectionName}
+                            >
+                                {sectionName}
+                            </option>
+                        ))}
                     </select>
                 </label>
                 <Button

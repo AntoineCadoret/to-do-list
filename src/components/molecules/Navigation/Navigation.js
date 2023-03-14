@@ -12,7 +12,7 @@ function Navigation() {
         let style = "mt-5 ml-5 px-4 py-2 rounded bg-sky-500";
         style = style + " text-white hover:bg-sky-700 active:bg-sky-200";
         if (actif) {
-            style = style.replace('500', '800');
+            style = style.replace('bg-sky-500', 'bg-sky-800');
             console.log(style);
         }
         return style;

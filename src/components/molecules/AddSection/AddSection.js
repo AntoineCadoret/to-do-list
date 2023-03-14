@@ -1,8 +1,14 @@
 import React from "react";
 import { Button } from "../../atoms/Button";
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { sectionAction } from "../../../store/storage";
 
-const AddSection = ({addNewSection}, props) => {
+const AddSection = (props) => {
+  const dispatch = useDispatch();
+  const addNewSection = () => {
+    const title = document.querySelector(".newSection").value;
+    dispatch(sectionAction.addSection(title));
+  };
   return (
     <div className="addSection m-3 flex gap-4 justify-center">
       <input
@@ -17,8 +23,5 @@ const AddSection = ({addNewSection}, props) => {
       />
     </div>
   );
-};
-AddSection.propTypes = {
-  addNewSection: PropTypes.func,
 };
 export { AddSection };

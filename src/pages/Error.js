@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Navigation from "../components/molecules/Navigation/Navigation";
 
 /**
  *
@@ -9,7 +8,6 @@ import Navigation from "../components/molecules/Navigation/Navigation";
 function Error() {
     return (
         <div className="App">
-            <Navigation />
             <div
                 className="flex
                  flex-col

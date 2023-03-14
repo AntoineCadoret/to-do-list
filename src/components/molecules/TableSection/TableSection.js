@@ -1,10 +1,14 @@
 import React from 'react';
 import { Button } from "../../atoms/Button";
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { sectionAction } from "../../../store/storage";
 
-const TableSection = ({ sectionTitle, removeSection }, props) => {
+const TableSection = ({ sectionTitle }, props) => {
+  const dispatch = useDispatch();
   const removeSectionHandler = () => {
-    removeSection(sectionTitle);
+      const title = sectionTitle;
+      dispatch(sectionAction.removeSection(title));
   };
   return (
     <div className="rounded w-1/6 bg-slate-300">
