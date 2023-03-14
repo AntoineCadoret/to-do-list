@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 function FormTask() {
     const sections = useSelector((state) => state.sections.sections);
     const saveHandler = () => {
+        // const taskName = document.querySelector(".taskName").value;
         const arrTask = [];
         return arrTask;
     };
@@ -20,8 +21,8 @@ function FormTask() {
                     Name :
                     <input
                         type="text"
-                        name="nomTache"
-                        className="m-1 rounded border"
+                        name="taskName"
+                        className="taskName m-1 rounded border"
                     />
                 </label>
                 <label className="m-4">

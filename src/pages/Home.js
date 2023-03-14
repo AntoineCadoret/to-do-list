@@ -1,7 +1,6 @@
 import React from "react";
 import { Header } from "../components/organisms/Header/Header";
 import { TableToDo } from "../components/organisms/TableToDo/TableToDo";
-import { AddSection } from "../components/molecules/AddSection/AddSection";
 
 /**
  *
@@ -17,7 +16,6 @@ function Home() {
         linkName="Add Task"
         />
       <TableToDo/>
-      <AddSection/>
     </div>
   );
 }
