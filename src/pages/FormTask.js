@@ -1,23 +1,43 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "../components/organisms/Header/Header";
 import { Button } from "../components/atoms/Button";
 import { useSelector, useDispatch } from 'react-redux';
 import { taskAction } from "../store/storage";
+import PropTypes from 'prop-types';
+
 /**
  *
- * @return {html} task creation and update page
+ * @param {string} param0
+ * @param {string} props
+ * @return {html} new or updated task
  */
-function FormTask() {
+const FormTask = ({ type }, props) => {
     const sections = useSelector((state) => state.sections.sections);
     const tasks = useSelector((state) => state.task.task);
+    let task = "";
+    let updateTaskId = 0;
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const params = useParams();
+
+    if (type === 'update') {
+        updateTaskId = params.taskId;
+        task = tasks[updateTaskId];
+    }
+
     const saveHandler = () => {
         const taskName = document.querySelector(".taskName").value;
         const taskType = document.querySelector(".taskType").value;
         const taskDate = document.querySelector(".date-du").value;
         const taskCompletion = document.querySelector(".completion").value;
-        const taskId = tasks.length;
+        let taskId = 0;
+        if (type === 'update') {
+            taskId = updateTaskId;
+        } else {
+            taskId = tasks.length;
+        }
         const arrTask = {
             id: taskId,
             name: taskName,
@@ -25,11 +45,25 @@ function FormTask() {
             dueDate: taskDate,
             completionLevel: taskCompletion,
         };
-        dispatch(taskAction.addTask(arrTask));
+        if (type === 'update') {
+            dispatch(taskAction.updateTask({
+                index: task.id,
+                newTask: arrTask,
+            }));
+        } else {
+            dispatch(taskAction.addTask(arrTask));
+        }
+        navigate('/');
+    };
+    const deleteHandler = () => {
+        if (confirm("Are you sure to remove the" + task.name + " task")) {
+            dispatch(taskAction.deleteTask(task));
+            navigate('/');
+        }
     };
     return (
         <div className="App">
-            <Header title="Add Tâche"/>
+            <Header title="Add Tâche" />
             <div className="flex flex-col m-8">
                 <label className="m-4">
                     Name :
@@ -37,6 +71,7 @@ function FormTask() {
                         type="text"
                         name="taskName"
                         className="taskName m-1 rounded border"
+                        defaultValue = {(type === 'update')? task.name : ""}
                     />
                 </label>
                 <label className="m-4">
@@ -44,7 +79,8 @@ function FormTask() {
                     <select
                         name="taskType"
                         className="taskType m-1 rounded border"
-                        defaultValue='default'
+                        defaultValue=
+                        {(type === 'update') ? task.type : 'default'}
                     >
                         <option value="default">
                             Choose a type of task
@@ -61,6 +97,7 @@ function FormTask() {
                         type="date"
                         name="date-du"
                         className="date-du m-1 border rounded"
+                        defaultValue={(type === 'update') ? task.dueDate : ''}
                     />
                 </label>
                 <label className="m-4">
@@ -68,7 +105,8 @@ function FormTask() {
                     <select
                         name="completion"
                         className="completion m-1 rounded border"
-                        defaultValue='default'
+                        defaultValue=
+                        {(type === 'update') ? task.completionLevel : 'default'}
                     >
                         <option value="default">
                             Choose a completion level
@@ -88,9 +126,18 @@ function FormTask() {
                     buttonStyle="m-4 w-1/4 p-2 rounded bg-sky-500 text-white"
                     clickHandle={saveHandler}
                 />
+                {(type == 'update') ?
+                    <Button
+                        value="Delete"
+                        buttonStyle="
+                        m-4 w-1/4 p-2 rounded bg-red-500 text-white"
+                        clickHandle={deleteHandler}
+                    /> : ''}
             </div>
         </div>
     );
-}
-
+};
+FormTask.propTypes = {
+    type: PropTypes.string,
+};
 export default FormTask;

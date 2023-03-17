@@ -27,15 +27,15 @@ const taskSlice = createSlice({
     initialState: initialTaskState,
     reducers: {
         addTask: (state, action) => {
-            console.log(action.payload);
             state.task.push(action.payload);
-            console.log(state.task[1]);
         },
-        removeTask: (state, action) => {
-            console.log("remove");
+        deleteTask: (state, action) => {
+            const index = state.task.indexOf(action.payload);
+            state.task.splice(index, 1);
         },
         updateTask: (state, action) => {
-            console.log("update");
+            const index = action.payload.index;
+            state.task[index] = action.payload.newTask;
         },
     },
 });

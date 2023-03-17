@@ -28,7 +28,7 @@ function Navigation() {
             </NavLink>
             <NavLink
                 className={({isActive})=>styleLink(isActive)}
-                to="/FormTask"
+                to="/FormTask/add"
                 end
             >
                 Add Task

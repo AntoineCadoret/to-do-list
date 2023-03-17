@@ -22,8 +22,13 @@ const router = createBrowserRouter([
         errorElement: <Error/>,
       },
       {
-        path: '/FormTask',
-        element: <FormTask/>,
+        path: '/FormTask/add',
+        element: <FormTask type="add"/>,
+        errorElement: <Error/>,
+      },
+      {
+        path: '/FormTask/:taskId',
+        element: <FormTask type="update"/>,
         errorElement: <Error/>,
       },
     ],

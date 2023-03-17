@@ -31,6 +31,11 @@ const ModalSectionUpdate = ({ modifType, title, closeHandler }, props) => {
                     {(modifType === "update") ?
                         <h2>Update the {title} section</h2> :
                         <h2>Add a section</h2>}
+                    <Button
+                        value='X'
+                        clickHandle={closeHandler}
+                        buttonStyle='self-right text-white font-bold'
+                    />
                 </header>
                 <div className={classes.content}>
                     <label>

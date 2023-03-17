@@ -19,6 +19,8 @@
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
   background: rgb(14 165 233);
   padding: 1rem;
 }
