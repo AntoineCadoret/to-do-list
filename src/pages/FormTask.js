@@ -30,7 +30,8 @@ const FormTask = ({ type }, props) => {
     const saveHandler = () => {
         const taskName = document.querySelector(".taskName").value;
         const taskType = document.querySelector(".taskType").value;
-        const taskDate = document.querySelector(".date-du").value;
+        const taskStartDate = document.querySelector(".date-start").value;
+        const taskDueDate = document.querySelector(".date-du").value;
         const taskCompletion = document.querySelector(".completion").value;
         let taskId = 0;
         if (type === 'update') {
@@ -42,7 +43,8 @@ const FormTask = ({ type }, props) => {
             id: taskId,
             name: taskName,
             type: taskType,
-            dueDate: taskDate,
+            startDate: taskStartDate,
+            dueDate: taskDueDate,
             completionLevel: taskCompletion,
         };
         if (type === 'update') {
@@ -90,6 +92,15 @@ const FormTask = ({ type }, props) => {
                         <option value="Urgent">Urgent</option>
                         <option value="Financial">Financial</option>
                     </select>
+                </label>
+                <label className="m-4">
+                    Start date :
+                    <input
+                        type="date"
+                        name="date-start"
+                        className="date-start m-1 border rounded"
+                        defaultValue={(type === 'update') ? task.startDate : ''}
+                    />
                 </label>
                 <label className="m-4">
                     Due date :

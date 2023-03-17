@@ -28,7 +28,9 @@ const TaskCard = ({ id }, props) => {
     return (
         <Draggable className={styleCard} type="task" data={id}>
             <div className="flex justify-between">
-                <p className="float-left">{taskAfficher.dueDate}</p>
+                <p className="float-left">
+                    {taskAfficher.startDate} - {taskAfficher.dueDate}
+                </p>
                 <Link to={"/FormTask/"+taskAfficher.id}>
                     <img src={Settings} alt="settings icon" />
                 </Link>
