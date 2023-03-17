@@ -37,6 +37,11 @@ const taskSlice = createSlice({
             const index = action.payload.index;
             state.task[index] = action.payload.newTask;
         },
+        updateTaskSection: (state, action) => {
+            const index = action.payload.index;
+            // console.log(state.task[index]);
+            state.task[index].completionLevel = action.payload.completion;
+        },
     },
 });
 const store = configureStore({

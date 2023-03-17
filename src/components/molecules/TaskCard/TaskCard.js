@@ -1,8 +1,10 @@
 import React from "react";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { Draggable } from "react-drag-and-drop";
 import PropTypes from 'prop-types';
 import Settings from '../../../image/settings.svg';
+
 
 const TaskCard = ({ id }, props) => {
     const tasks = useSelector((state) => state.task.task);
@@ -24,7 +26,7 @@ const TaskCard = ({ id }, props) => {
             break;
     }
     return (
-        <div className={styleCard}>
+        <Draggable className={styleCard} type="task" data={id}>
             <div className="flex justify-between">
                 <p className="float-left">{taskAfficher.dueDate}</p>
                 <Link to={"/FormTask/"+taskAfficher.id}>
@@ -33,11 +35,11 @@ const TaskCard = ({ id }, props) => {
             </div>
             <h2>{taskAfficher.name}</h2>
             <p>{taskAfficher.type}</p>
-        </div>
+        </Draggable>
     );
 };
 TaskCard.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default TaskCard;

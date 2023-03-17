@@ -3,13 +3,22 @@ import { Button } from "../../atoms/Button";
 import PropTypes from 'prop-types';
 import ModalSectionUpdate from
   '../../organisms/ModalTabeUpdate/ModalSectionUpdate';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Droppable } from 'react-drag-and-drop';
+import { taskAction } from "../../../store/storage";
 import TaskCard from '../TaskCard/TaskCard';
 
 const TableSection = ({ sectionTitle }, props) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const tasks = useSelector((state) => state.task.task);
+  const dispatch = useDispatch();
 
+  const handleDropTask = (data, event) => {
+    dispatch(taskAction.updateTaskSection({
+      index: data.task,
+      completion: sectionTitle,
+    }));
+  };
   const updateSectionHandler = () => {
     setIsUpdating(true);
   };
@@ -24,7 +33,10 @@ const TableSection = ({ sectionTitle }, props) => {
           closeHandler={closeModal}
           modifType = 'update'
         />}
-      <div className="rounded w-1/3 bg-slate-300">
+      <Droppable
+        types={['task']}
+        onDrop={handleDropTask}
+        className="rounded w-1/3 bg-slate-300">
         <Button
           buttonStyle='bg-sky-500 float-right p-2 hover:bg-sky-700'
           value='Update'
@@ -38,7 +50,7 @@ const TableSection = ({ sectionTitle }, props) => {
               id={task.id}
               /> : ''
           ))}
-      </div>
+      </Droppable>
     </>
   );
 };
